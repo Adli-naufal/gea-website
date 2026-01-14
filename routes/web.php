@@ -18,8 +18,8 @@ Route::view('/', 'home');
 Route::view('/custom-gold', 'custom-gold.index');
 Route::view('/blog', 'blog.index');
 Route::view('/about-us', 'about.index');
-Route::view('/dinar', 'dinar.index');
-Route::get('/products/{category}', [ProductController::class, 'index']);
+Route::get('/{category}', [ProductController::class, 'index'])
+    ->whereIn('category', ['gold', 'dinar']);
 Route::get('/prices/{category}', [PriceController::class, 'index']);
 
 /*

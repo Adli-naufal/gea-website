@@ -4,26 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Price;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index($category)
+    public function index(string $category)
     {
-        if (!in_array($category, ['gold', 'dinar'])) {
-            abort(404);
-        }
-
+        // 1. Products (static offerings)
         $products = Product::where('category', $category)->get();
 
+        // 2. Latest price reference
         $latestPrice = Price::where('category', $category)
-            ->orderBy('date', 'desc')
+            ->orderByDesc('date')
             ->first();
 
         return view('products.index', [
             'title' => ucfirst($category),
             'products' => $products,
-            'latestPrice' => $latestPrice
+            'latestPrice' => $latestPrice,
         ]);
     }
 }
