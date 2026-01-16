@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Price;
+use App\services\PriceService;
 use Illuminate\Http\Request;
 
 class PriceController extends Controller
 {
-    public function index($category)
-    {
-        if (!in_array($category, ['gold', 'dinar'])) {
-            abort(404);
-        }
+    protected PriceService $priceService;
 
-        $prices = Price::where('category', $category)
-            ->orderBy('created_at', 'desc')
-            ->get();
+    public function __construct(PriceService $priceService)
+    {
+        $this->priceService = $priceService;
+    }
+
+    public function index(string $category)
+    {
+        $prices = $this->priceService->getByCategory($category);
 
         return view('prices.index', [
-            'title' => 'Harga ' . ucfirst($category),
-            'prices' => $prices
+            'category' => $category,
+            'prices' => $prices,
         ]);
     }
 }

@@ -1,14 +1,13 @@
-<h1>{{ $title }}</h1>
+@extends('layouts.app')
 
-@forelse ($prices as $price)
-    <div class="mb-2">
-        <strong>
-            Rp {{ number_format($price->price_per_gram) }}
-        </strong>
-        <small class="text-muted">
-            ({{ $price->source }} - {{ $price->date }})
-        </small>
-    </div>
-@empty
-    <p class="text-muted">Belum ada data harga.</p>
-@endforelse
+@section('content')
+<section class="container py-5">
+
+    <h1 class="mb-4">
+        Harga {{ ucfirst($category) }}
+    </h1>
+
+    @include('prices.partials.table', ['prices' => $prices])
+
+</section>
+@endsection
