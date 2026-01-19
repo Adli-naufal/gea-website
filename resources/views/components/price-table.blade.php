@@ -10,7 +10,9 @@
         @forelse ($prices as $price)
             <tr>
                 <td>{{ $price->date }}</td>
-                <td>Rp {{ number_format($price->price_per_gram, 0, ',', '.') }}</td>
+                <td>
+                    Rp {{ number_format($price->price_per_gram, 0, ',', '.') }}
+                </td>
                 <td>{{ $price->source }}</td>
             </tr>
         @empty

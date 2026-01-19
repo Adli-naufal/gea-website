@@ -7,7 +7,7 @@
         Harga {{ ucfirst($category) }}
     </h1>
 
-    @include('prices.partials.table', ['prices' => $prices])
+    <x-price-table :prices="$prices" />
 
 </section>
 @endsection
