@@ -17,10 +17,13 @@ class PriceController extends Controller
     public function index(string $category)
     {
         $prices = $this->priceService->getByCategory($category);
+        $referencePrice = $this->priceService->getReferencePrice($category);
 
-        return view('prices.index', [
-            'category' => $category,
-            'prices' => $prices,
-        ]);
+        return view('prices.index', compact(
+            'category',
+            'prices',
+            'referencePrice'
+        ));
     }
+
 }
