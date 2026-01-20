@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Models\Product;
 use App\Models\Price;
 use App\Services\ProductService;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\PriceController as AdminPriceController;
 /*
@@ -16,7 +17,7 @@ use App\Http\Controllers\Admin\PriceController as AdminPriceController;
 |--------------------------------------------------------------------------
 */
 
-Route::view('/', 'home');
+Route::get('/', [HomeController::class, 'index']);
 Route::view('/custom-gold', 'custom-gold.index');
 Route::view('/blog', 'blog.index');
 Route::view('/about-us', 'about.index');

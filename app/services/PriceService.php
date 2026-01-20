@@ -35,4 +35,17 @@ class PriceService
         Cache::forget("prices:reference:$category");
     }
 
+    public function getLatestForHomepage(): array
+    {
+        return Cache::remember(
+            'prices:homepage',
+            now()->addMinutes(30),
+            function () {
+                return [
+                    'gold' => $this->getReferencePrice('gold'),
+                    'dinar' => $this->getReferencePrice('dinar'),
+                ];
+            }
+        );
+    }
 }
