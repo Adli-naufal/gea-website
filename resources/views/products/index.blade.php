@@ -1,14 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>{{ $title }}</h1>
-
-@if ($latestPrice)
-    <p>
-        Reference price ({{ $latestPrice->source }}):
-        <strong>Rp {{ number_format($latestPrice->price_per_gram) }} / gram</strong>
-    </p>
-@endif
+<h1>Harga {{ ucfirst($category) }}</h1>
 
 <hr>
 
@@ -17,6 +10,9 @@
     <li>
         {{ $product->name }} —
         {{ $product->weight }} gram
+        <strong>
+            Rp {{ number_format($product->price, 0, ',', '.') }}
+        </strong>
     </li>
 @endforeach
 </ul>

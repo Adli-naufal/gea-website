@@ -29,4 +29,10 @@ class PriceService
         );
     }
 
+    public function clearCache(string $category): void
+    {
+        Cache::forget("prices:list:$category");
+        Cache::forget("prices:reference:$category");
+    }
+
 }

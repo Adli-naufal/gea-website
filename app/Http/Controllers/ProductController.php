@@ -2,25 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\Price;
+use App\Services\ProductService;
 
 class ProductController extends Controller
 {
+    public function __construct(
+        protected ProductService $productService
+    ) {}
+
     public function index(string $category)
     {
-        // 1. Products (static offerings)
-        $products = Product::where('category', $category)->get();
+        $products = $this->productService->getByCategory($category);
 
-        // 2. Latest price reference
-        $latestPrice = Price::where('category', $category)
-            ->orderByDesc('date')
-            ->first();
-
-        return view('products.index', [
-            'title' => ucfirst($category),
-            'products' => $products,
-            'latestPrice' => $latestPrice,
-        ]);
+        return view('products.index', compact('category', 'products'));
     }
 }

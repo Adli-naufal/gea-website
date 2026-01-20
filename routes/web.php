@@ -7,7 +7,9 @@ use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
 use App\Models\Price;
-
+use App\Services\ProductService;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\PriceController as AdminPriceController;
 /*
 |--------------------------------------------------------------------------
 | Public Routes
@@ -63,33 +65,13 @@ Route::middleware('admin.auth')->group(function () {
         return view('admin.dashboard');
     });
 
-    Route::get('/admin/gold', function () {
-        $products = Product::orderBy('type')
-            ->orderBy('weight')
-            ->get();
-
-        return view('admin.gold.index', compact('products'));
-    });
-
-    // ✅ EDIT
-    Route::get('/admin/gold/{product}/edit', function (Product $product) {
-        return view('admin.gold.edit', compact('product'));
-    });
-
-    // ✅ UPDATE
-    Route::post('/admin/gold/{product}', function (Product $product) {
-        request()->validate([
-            'price' => 'required|numeric|min:0',
-            'is_active' => 'nullable|boolean',
-        ]);
-
-        $product->update([
-            'price' => request('price'),
-            'is_active' => request()->has('is_active'),
-        ]);
-
-        return redirect('/admin/gold')->with('success', 'Price updated');
-    });
+    Route::get('/admin/gold', [AdminProductController::class, 'index']);
+    Route::get('/admin/gold/{product}/edit', [AdminProductController::class, 'edit']);
+    Route::post('/admin/gold/{product}', [AdminProductController::class, 'update']);
+    Route::get('/admin/prices/{category}', [AdminPriceController::class, 'index'])
+    ->whereIn('category', ['gold', 'dinar']);
+    Route::get('/admin/prices/{price}/edit', [AdminPriceController::class, 'edit']);
+    Route::post('/admin/prices/{price}', [AdminPriceController::class, 'update']);
 
 });
 
