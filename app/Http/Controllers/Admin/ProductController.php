@@ -28,11 +28,13 @@ class ProductController extends Controller
     ) {
         $validated = $request->validate([
             'price' => 'required|numeric|min:0',
+            'is_active' => 'sometimes|boolean',
         ]);
 
 
         $product->update([
             'price' => $validated['price'],
+            'is_active' => $request->has('is_active')
         ]);
 
 

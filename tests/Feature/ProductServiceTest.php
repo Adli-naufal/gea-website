@@ -22,6 +22,15 @@ class ProductServiceTest extends TestCase
             'category' => 'gold',
             'weight' => 5,
             'price' => 5000000,
+            'is_active' => true,
+        ]);
+
+        $inactive = Product::create([
+            'name' => 'Gold 10g',
+            'category' => 'gold',
+            'weight' => 10,
+            'price' => 10000000,
+            'is_active' => false,
         ]);
 
         $lighter = Product::create([
@@ -29,7 +38,9 @@ class ProductServiceTest extends TestCase
             'category' => 'gold',
             'weight' => 1,
             'price' => 1200000,
+            'is_active' => true,
         ]);
+
 
         $service = app(ProductService::class);
 
@@ -37,5 +48,6 @@ class ProductServiceTest extends TestCase
 
         $this->assertCount(2, $products);
         $this->assertEquals($lighter->id, $products->first()->id);
+        $this->assertFalse($products->contains($inactive));
     }
 }

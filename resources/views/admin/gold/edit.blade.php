@@ -11,6 +11,7 @@
             @csrf
 
             <div class="mb-3">
+                
                 <label class="form-label">Product Name</label>
                 <input type="text"
                        class="form-control"
@@ -29,14 +30,16 @@
 
             <div class="form-check mb-3">
                 <input class="form-check-input"
-                       type="checkbox"
-                       name="is_active"
-                       id="activeCheck"
-                       {{ $product->is_active ? 'checked' : '' }}>
+                    type="checkbox"
+                    name="is_active"
+                    id="activeCheck"
+                    value="1"
+                    {{ $product->is_active ? 'checked' : '' }}>
                 <label class="form-check-label" for="activeCheck">
                     Active
                 </label>
             </div>
+
 
             <div class="d-flex gap-2">
                 <button class="btn btn-dark">Save</button>

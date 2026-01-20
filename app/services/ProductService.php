@@ -13,7 +13,7 @@ class ProductService
             "products:list:$category",
             now()->addMinutes(30),
             fn () => Product::where('category', $category)
-                // remove is_active filter entirely
+                ->where('is_active', true)
                 ->orderBy('weight')
                 ->get()
         );
