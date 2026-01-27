@@ -1,47 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="{{ url('/') }}">GEA</a>
+<nav class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <!-- Brand -->
+            <a href="/" class="text-xl font-bold tracking-wide text-gray-800">
+                GEA
+            </a>
 
-        <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('/') ? 'active fw-semibold' : '' }}" href="{{ url('/') }}">
-                            Home
-                        </a>
-                    </li>
+            <!-- Navigation (Desktop) -->
+            <div class="hidden md:flex gap-6">                <a href="/dinar" class="nav-link {{ request()->is('dinar') ? 'active' : '' }}">Dinar</a>
+                <a href="/custom-gold" class="nav-link {{ request()->is('custom-gold') ? 'active' : '' }}">Custom Gold</a>
+                <a href="/blog" class="nav-link {{ request()->is('blog') ? 'active' : '' }}">Blog</a>
+                <a href="/about-us" class="nav-link {{ request()->is('about-us') ? 'active' : '' }}">About Us</a>
+            </div>
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('gold') ? 'active fw-semibold' : '' }}"
-                            href="{{ url('/gold') }}">Gold</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('dinar') ? 'active fw-semibold' : '' }}"
-                            href="{{ url('/dinar') }}">Dinar</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('custom-gold') ? 'active fw-semibold' : '' }}" href="{{ url('/custom-gold') }}">
-                            Custom Gold
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('blog') ? 'active fw-semibold' : '' }}" href="{{ url('/blog') }}">
-                            Blog
-                        </a>
-                    </li>
-  
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('about-us') ? 'active fw-semibold' : '' }}" href="{{ url('/about-us') }}">
-                            About Us
-                        </a>
-                    </li>
-            </ul>
         </div>
     </div>
 </nav>

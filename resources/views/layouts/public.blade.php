@@ -6,49 +6,48 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+   
 </head>
-<body>
 
+ {{-- Tailwind CSS --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+<body class="antialiased text-gray-800">
+
+    {{-- Navbar --}}
     @include('layouts.navigation')
 
-<main class="container my-5">
-    @yield('content')
-</main>
+    {{-- Main Content --}}
+    <main class="min-h-screen">
+        @yield('content')
+    </main>
 
-<footer class="border-top mt-5">
-    <div class="container py-4">
+    {{-- Footer --}}
+    <footer class="border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-        <div class="row">
+            <div class="flex flex-col md:flex-row md:justify-between gap-6">
 
-            <!-- Brand / Trust -->
-            <div class="col-md-6 mb-3 mb-md-0">
-                <strong>GEA</strong>
-                <p class="text-muted mb-1">
-                    Gold & Dinar information platform.
-                </p>
-                <small class="text-muted">
-                    © {{ date('Y') }} GEA. All rights reserved.
-                </small>
-            </div>
+                {{-- Brand / Trust --}}
+                <div>
+                    <strong class="text-lg font-semibold">GEA</strong>
+                    <p class="text-sm text-gray-600 mt-1">
+                        Gold & Dinar information platform.
+                    </p>
+                    <p class="text-xs text-gray-500 mt-2">
+                        © {{ date('Y') }} GEA. All rights reserved.
+                    </p>
+                </div>
 
-            <!-- Meta / Links -->
-            <div class="col-md-6 text-md-end">
-                <small class="text-muted d-block">
-                    Prices are for informational purposes only.
-                </small>
-                <small class="text-muted d-block">
-                    Based in Indonesia.
-                </small>
+                {{-- Meta / Info --}}
+                <div class="text-sm text-gray-500 md:text-right">
+                    <p>Prices are for informational purposes only.</p>
+                    <p>Based in Indonesia.</p>
+                </div>
+
             </div>
 
         </div>
+    </footer>
 
-    </div>
-</footer>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
