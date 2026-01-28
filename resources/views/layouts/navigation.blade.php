@@ -9,7 +9,7 @@
 
             <!-- Navigation (Desktop) -->
             <div class="hidden md:flex gap-6">
-                <a href="/home" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>                
+                <a href="/" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>                
                 <a href="/gold" class="nav-link {{ request()->is('gold') ? 'active' : '' }}">Gold</a>
                 <a href="/dinar" class="nav-link {{ request()->is('dinar') ? 'active' : '' }}">Dinar</a>
                 <a href="/custom-gold" class="nav-link {{ request()->is('custom-gold') ? 'active' : '' }}">Custom Gold</a>
