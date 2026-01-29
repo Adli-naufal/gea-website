@@ -33,5 +33,13 @@
         </div>
     </div>
 
+    <div class="col-12 mt-4">
+        <h2 class="h4 mb-3">Blog Management</h2>
+        <a href="{{ route('admin.blog.index') }}"
+            class="inline-block px-4 py-2 bg-black text-white rounded">
+                Manage Blog Posts
+        </a>
+    </div>
+
 </div>
 @endsection

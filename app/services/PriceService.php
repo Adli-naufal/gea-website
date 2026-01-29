@@ -33,6 +33,7 @@ class PriceService
     {
         Cache::forget("prices:list:$category");
         Cache::forget("prices:reference:$category");
+        Cache::forget('prices:homepage');
     }
 
     public function getLatestForHomepage(): array
